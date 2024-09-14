@@ -1,1 +1,1 @@
-# Trabajo_de_tesis_Cooperaci-n_de_manipuladores_moviles
+# Trabajo_de_tesis_Cooperacion_de_manipuladores_moviles
