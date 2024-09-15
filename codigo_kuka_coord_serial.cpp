@@ -28,10 +28,6 @@ int main(int argc, char *argv[]) {
 	VectorXd dq_r(8);
 	VectorXd dq(8), p(3), a1(3), a2(3), XD(3), XDpp(3), u(3);
 	double est_error, time_r;
-	//Vector3f p_obj(3);
-	
-	//p_obj=camera.detection();
-	//SLEEP_MILLISEC(5000);
 
 	/* configuration flags for different system configuration (e.g. base without arm)*/
 	bool youBotHasBase = false;
@@ -173,10 +169,6 @@ int main(int argc, char *argv[]) {
 			
 			data_r=clientcommunication.data_receptor(connfd);
 			
-			// open the gripper 2 cm
-// 			gripperSetPoint.barSpacing = 0.02 * meter;
-// 			myYouBotManipulator->getArmGripper().setData(gripperSetPoint);
-			
 			// Initial joints configuration
 			double q1r = data_r.q4; // 0.11 - 5.83
 			double q2r = data_r.q5; // 0.11 - 2.65
@@ -200,10 +192,6 @@ int main(int argc, char *argv[]) {
 			SLEEP_MILLISEC(5000);
 			
 				SerialPort serial("/dev/ttyUSB0");
-    
-    //SerialStream serial;
-    
-    
     
     serial.Open(SerialPort::BAUD_115200,SerialPort::CHAR_SIZE_8,SerialPort::SerialPort::PARITY_NONE,SerialPort::STOP_BITS_1,SerialPort::FLOW_CONTROL_NONE);
 
@@ -253,10 +241,10 @@ int main(int argc, char *argv[]) {
 				serial.Read(buffer,buff_size,100);
 	
 				try{
-	//if (buffer[0]=='#'){
+
 				  numberreceived = double((int(buffer[1])-48)*1000 + (int(buffer[2])-48)*100 + (int(buffer[3])-48)*10 + (int(buffer[4])-48)*1)*.01;
 				  std::cout << numberreceived<<std::endl;
-	//}
+
 				  buffer.clear();
 
 				}
@@ -382,9 +370,6 @@ int main(int argc, char *argv[]) {
  				myYouBotManipulator->getArmJoint(4).setData(desiredVelocity);
  				desiredVelocity.angularVelocity = 0 * radian_per_second;
  				myYouBotManipulator->getArmJoint(5).setData(desiredVelocity);
-				
-								
-				
 				
 			}
 			serial.Close();
