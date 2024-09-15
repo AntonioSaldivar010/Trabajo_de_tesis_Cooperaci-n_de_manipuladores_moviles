@@ -121,11 +121,6 @@ void optitrack_readings()
     y_1i = Robot1_Pose.pose.position.y;
     z_1i = Robot1_Pose.pose.position.z;
 
-    // Obtención de las coordenadas cartesianas y angulares del efector final del R2
-//     x_2i = Robot2_Pose.pose.position.x;
-//     y_2i = Robot2_Pose.pose.position.y;
-//     z_2i = Robot2_Pose.pose.position.z;
-
     // Obtención de las coordenadas cartesianas y angulares de la base del R1
     x_1iB = Base1_Pose.pose.position.x;
     y_1iB = Base1_Pose.pose.position.y;
@@ -134,15 +129,6 @@ void optitrack_readings()
     Q1_1iB = Base1_Pose.pose.orientation.x;
     Q2_1iB = Base1_Pose.pose.orientation.y;
     Q3_1iB = Base1_Pose.pose.orientation.z;
-
-    // Obtención de las coordenadas cartesianas y angulares de la base del R2
-//     x_2iB = Base2_Pose.pose.position.x;
-//     y_2iB = Base2_Pose.pose.position.y;
-//     z_2iB = Base2_Pose.pose.position.z;
-//     Q0_2iB = Base2_Pose.pose.orientation.w;
-//     Q1_2iB = Base2_Pose.pose.orientation.x;
-//     Q2_2iB = Base2_Pose.pose.orientation.y;
-//     Q3_2iB = Base2_Pose.pose.orientation.z;
 
 }
 
@@ -313,7 +299,7 @@ VectorXd Control_Kuka(Vector3d e, double t, VectorXd dq, MatrixXd JAest, VectorX
     a << -pi / 2, pi / 2, -pi / 2, pi, pi / 2, 0, 0, pi / 2;
 
     Tf.setIdentity();
-cout<<"---------------------------------"<<endl;
+	
     for (int iii = 0; iii < 8; iii++)
     {
         Th << cos(q0(iii)), -sin(q0(iii)), 0, A(iii),
@@ -323,8 +309,6 @@ cout<<"---------------------------------"<<endl;
 
         Tf = Tf * Th;
         TM.block(4 * iii, 0, 4, 4) = Tf;
-
-        //cout<<TM.block(4 * (i - 1), 0, 4, 4)<<endl;
     }
 
     z1 = TM.block(0, 2, 3, 1);
@@ -378,13 +362,7 @@ cout<<"---------------------------------"<<endl;
     VectorXd alldata(42);
     double mu = 1.0;
     MatrixXd pinvJest(8, 3);
-
-    //VectorXd p(3 * kmax);
     VectorXd out_error(3);
-
-    //ef.setLinSpaced(point, e_min, e_max);
-
-    //double ex, ey, ez;
 
     out_error = v - JAest * w;
 
@@ -396,7 +374,7 @@ cout<<"---------------------------------"<<endl;
     NormepsX = eps.block(0, 0, 1, 8).norm();
     NormepsY = eps.block(1, 0, 1, 8).norm();
     NormepsZ = eps.block(2, 0, 1, 8).norm();
-    //----------------------------------------------------------------------------------//
+        //----------------------------------------------------------------------------------//
         //----------------------Network with estimation error as input----------------------//
         //----------------------------------------------------------------------------------//
 
@@ -538,7 +516,6 @@ cout<<"---------------------------------"<<endl;
 
 void communication_robot1(int sockfd)
 {
-    //     KukaYb Youbot_ctrl;
     data_package data_rob_r;
     data_package data_rob_s;
     ServerComm servercomm;
