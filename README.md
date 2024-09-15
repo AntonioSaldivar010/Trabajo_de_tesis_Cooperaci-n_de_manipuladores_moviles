@@ -1,4 +1,4 @@
-# Trabajo_de_tesis_Cooperacion_de_manipuladores_moviles
+# Trabajo de tesis: Cooperacion de manipuladores móviles con medición de fuerza usando una galga extensiométrica en el plano sagital
 
 ## Plataforma experimental
 <p align="center">
@@ -112,3 +112,5 @@ En este experimento se realizan las tareas de regulación de posición y fuerza 
 </p>
 
 Una vez que se pasa desde la configuración inicial (Figura 11) a sostener el objeto (Figura 12), se traslada a otro punto en el espacio de trabajo (Figura 13). Ya estando por encima de una caja de cartón que sirve de contenedor, se deposita la esponja, ver Figura 14, finalizando así la tarea de traslado. Para ver el video, entre al siguiente enlace: https://youtu.be/jZ-ZS3CLKuc
+
+El códgio utilizado en la computadora central para el experimento N° 1 es: Coordination_code_with_force_FREN_1_kuka.cpp. Y para los experimentos N° 2 y N° 3 es: Coordination_code_w_force_exp_2_y_3_w_FREN.cpp. El código para el robot K1 es: codigo_kuka_coord_serial.cpp, mientras que el código de K2 es: codigo_kuka_coord.cpp.
