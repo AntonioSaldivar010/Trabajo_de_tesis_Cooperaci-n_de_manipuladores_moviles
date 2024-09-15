@@ -303,7 +303,7 @@ Kca << 0, 0, 0,
 	Kf << 0.03, 0, 0,
 	      0, 0, 0,
 	      0, 0, 0;
-// 	cout<<"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"<<endl;
+	    
 	Kc << 0, 0, 0,
 	 0, 0.04, 0,
 	 0, 0, 0.7;
@@ -313,7 +313,6 @@ Kca << 0, 0, 0,
         K << 0, 0, 0,
 	     0, 0, 0,
              0, 0, 0.12;
-// 	     cout<<"EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"<<endl;
     }
     
     if (flag3==1){
@@ -394,7 +393,7 @@ Kca << 0, 0, 0,
     a << -pi / 2, pi / 2, -pi / 2, pi, pi / 2, 0, 0, pi / 2;
 
     Tf.setIdentity();
-// cout<<"---------------------------------"<<endl;
+	
     for (int iii = 0; iii < 8; iii++)
     {
         Th << cos(q0(iii)), -sin(q0(iii)), 0, A(iii),
@@ -405,7 +404,6 @@ Kca << 0, 0, 0,
         Tf = Tf * Th;
         TM.block(4 * iii, 0, 4, 4) = Tf;
 
-        //cout<<TM.block(4 * (i - 1), 0, 4, 4)<<endl;
     }
 
     z1 = TM.block(0, 2, 3, 1);
@@ -579,7 +577,6 @@ Kca << 0, 0, 0,
 	C_2Y=0;
 	C_1Z=0;
 	C_2Z=0;
-	cout << "HOOOOOOOOOOOOOOOOOOOOOLLLLLLLLLLLLLLLLLAAAAAAAAAAAAAAAAAAA"<<endl;
     }
 
     MatrixXd C_1(3, 3); C_1 << C_1X, 0, 0,
@@ -704,14 +701,8 @@ void communication_robot1(int sockfd)
  	if (t>50){
  	  X_11d(1) = X_11d(1)+.04;
  	  X_12d(1) = X_12d(1)+.04;
-//  	  flag2=1;
- 	  cout<<"Flag2=1"<<endl;
  	}
 	
-// 	if (flag2=1 && t>90){
-// 	  X_11d(2) = X_11dx(2);
-// 	  cout<<"Estoy sobre la caja nueva"<<endl;
-// 	}
 	
 	ebx=X_11d-X_11dx;
 	
@@ -721,10 +712,7 @@ void communication_robot1(int sockfd)
 	    flag3=1;
 	}
 	if (flag3==1){
-// 	    X_11d(2) = X_11d(2)-.02;
 	    X_11d(2) = .27;
-// 	    X_12d(2) = X_12d(2)-.04;
-	    cout << "AAAAAAAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAA AAAAAAAAAAAAAAAAAAAAAAAAAAAA" <<endl;
 	}
 	
 	
@@ -761,7 +749,6 @@ void communication_robot1(int sockfd)
         JAest << JJxT1.transpose(), JJyT1.transpose(), JJzT1.transpose();
 
 	double est_error1; est_error1 = ctrl_result(32);
-	cout << "----------------------------" << endl;
 	VectorXd a11(3); a11 = ctrl_result.block(33, 0, 3, 1);
 	VectorXd a12(3); a12 = ctrl_result.block(36, 0, 3, 1);
 	VectorXd control1(3); control1 = ctrl_result.block(39, 0, 3, 1);
@@ -839,7 +826,6 @@ void communication_robot2(int sockfd)
     double t = 0;
     double dt = 0.01;
     double ef=0.0;
-    //VectorXd e1(3), e2(3), ec1(3), ec2(3);
 
     ros::Rate loop_rate(20);
 
@@ -870,8 +856,6 @@ void communication_robot2(int sockfd)
 	
         v2 = (X_22i - p2_temp) * (1 / dt);
 	
-	//X_22d(1) = X_22d(1) - .82; 
-	
  	X_22d(2) = X_22d(2) + 0.005;
 	
 	ef = f1 - 0.5;
@@ -888,14 +872,7 @@ void communication_robot2(int sockfd)
  	if (t>55){
  	  X_22d(1) = X_22d(1)-.04;
  	  X_21d(1) = X_21d(1)-.04;
-//  	  flag2=1;
- 	  cout<<"flag2=1"<<endl;
  	}
-	
-// 	if (flag2=1 && t>90){
-// 	  X_22d(2) = X_22dx(2);
-// 	  cout<<"Estoy sobre la caja nueva"<<endl;
-// 	}
 	
 	cout << "ebx2= "<<ebx2<<endl;
 	
@@ -906,17 +883,11 @@ void communication_robot2(int sockfd)
 	}
 	
 	if (flag3==1){
-// 	    X_22d(2) = X_22d(2)-.02;
 	    X_22d(2) = .27;
-//  	    X_21d(2) = X_21d(2)-.04;
-	    cout << "EEEEEEEEEEEEEEEEEEEEEEEEEEOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO" <<endl;
 	}
-	
-	
 	
 	if (flag3 == 1 && ebx2(2) < .28){
 	    flag4=1;
-	    cout << "ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ" << endl;
 	}
 	
 	e22 = X_22i - X_22d;
@@ -935,7 +906,6 @@ void communication_robot2(int sockfd)
 	{
 	    flag=1;
 	}
-	//ec2 << 0, 0, 0;
 	
         // Agregar aqui el código para estimación, adaptación y control del KUKA 2
         ctrl_result = Control_Kuka(e22, t, dq, JAest, v2, ec2, ef, flag, flag2, q, X_22i, X_22dpp, flag3, flag4);
@@ -947,7 +917,7 @@ void communication_robot2(int sockfd)
         JAest << JJxT2.transpose(), JJyT2.transpose(), JJzT2.transpose();
 
 	double est_error2; est_error2 = ctrl_result(32);
-	cout << "----------------------------" << endl;
+	    
 	VectorXd a21(3); a21 = ctrl_result.block(33, 0, 3, 1);
 	VectorXd a22(3); a22 = ctrl_result.block(36, 0, 3, 1);
 	VectorXd control2(3); control2 = ctrl_result.block(39, 0, 3, 1);
