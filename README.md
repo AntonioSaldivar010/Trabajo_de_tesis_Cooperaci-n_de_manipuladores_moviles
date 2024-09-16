@@ -7,6 +7,14 @@ En este trabajo se desarrolló una estrategia para realizar sujeción y transpor
   <br>Figura 1: Esquema de modelo basado en datos con el sistema robótico Kuka youbot.
 </p>
 
+La presente tesis aborda el problema de la manipulación y transporte de objetos en robótica móvil, centrándose en la implementación de un algoritmo de estimación de modelo cinemático con medición de fuerza unidimensional. Las principales contribuciones de esta investigación se pueden resumir en los siguientes puntos:
+
+- Diseño de un control que integra regulación de posición, coordinación y fuerza, permitiendo la interacción de los robots con su entorno, del conocimiento del autor esto no se ha reportado en el estado del arte.
+- Se realizó el tratamiento de señales y el diseño de un dispositivo dónde se montó la galga.
+- Implementación y validación en plataforma experimental mediante una serie de experimentos que demuestran su efectividad en la manipulación de objetos.
+- Análisis teórico y práctico de estabilidad y desempeño de los controladores propuestos, incluyendo pruebas físicas que respaldan los resultados obtenidos.
+- La sintonización de las ganancias de los lazos de posición, coordinación y fuerza para asegurar la convergencia de los controladores basadas en el análisis de estabilidad.
+
 ## Plataforma experimental
 <p align="center">
   <img src="https://github.com/user-attachments/assets/66fbc8c1-4d9d-40ad-9be9-6fafdb650349" alt="Figura 2: Estructura de la comunicación en la plataforma experimental con el sistema de cámaras Opti-track, los robots manipuladores móviles Kuka Youbot y la galga extensiométrica.">
